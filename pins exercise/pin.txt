@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>Click the button to enter the values.</p>
+<button onclick="myFunction()">Try it</button>
+<p id="demo"></p>
+<script>
+function myFunction() {
+    var str = prompt();
+    var res = str.split(",");
+    var input = new Array(22);
+
+    var m = res.length;
+    for(var i = 0; i < m; i++){
+    input[i] = parseInt(res[i]);
+
+    }
+    for(var i = m; i < 22; i++){
+    input[i] = 0;
+    }
+
+    var frame = new Array(11);
+
+
+
+ var j = 0;
+    for(var i = 0; i < 11; i++){
+    frame[i] = new Array(2);
+
+ if(input[j] !=10){
+ frame[i][0] = input[j];
+ frame[i][1] = input[j+1];
+ j =  j + 2;
+
+ }
+
+
+ else if(input[j] == 10){
+ frame[i][0] = input[j];
+ frame[i][1] = 0;
+ j++;
+
+ }
+
+ }
+
+  frame[10][0] = input[j-1];
+  frame[10][1] = input[j];
+
+
+
+
+
+ var score = new Array(10);
+
+ for(var i = 0;  i < 10 ; i++){
+
+ score[i] = 0;
+ if(frame[i][0]!= 10 ){
+ if( frame[i][0]+ frame[i][1] == 10)
+ score[i] = 10 + frame[i+1][0];
+
+
+ else
+ score[i] = frame[i][0]+frame[i][1];
+
+
+ }
+
+ if(frame[i][0] == 10 && i != 9){
+
+   if(frame[i+1][0] == 10){
+     score[i] = 10 + 10 + frame[i+2][0];
+
+   }
+
+   if(frame[i+1][0] != 10){
+
+     score[i] = 10 + frame[i+1][0] + frame[i+1][1];
+   }
+
+
+ }
+
+   if(frame[i][0] == 10 && i == 9){
+    score[i] = 10 + frame[i+1][0] + frame[i+1][1];
+
+   }
+
+ }
+
+ var sum  = 0;
+  for(var i = 0; i < 10; i++){
+
+    sum = sum + score[i];
+  }
+document.write("Total score is " + sum);
+
+
+
+
+}
+
+
+
+
+
+</script>
+</body>
+</html>
